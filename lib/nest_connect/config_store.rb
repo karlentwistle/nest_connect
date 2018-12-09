@@ -45,7 +45,7 @@ module NestConnect
       end
 
       def load_data
-        YAML.load File.read(path)
+        YAML.load(File.read(path)) || {}
       rescue
         {}
       end

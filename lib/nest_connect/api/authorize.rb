@@ -1,10 +1,11 @@
 module NestConnect
   class API
     class Authorize < API
-      def initialize(auth_code:, client_id:, client_secret:)
+      def initialize(auth_code:, client_id:, client_secret:, stdout: STDOUT)
         @auth_code = auth_code
         @client_id = client_id
         @client_secret = client_secret
+        @stdout = stdout
       end
 
       def run
@@ -17,13 +18,13 @@ module NestConnect
         if response.status == 200
           configuration.access_token = response.body['access_token']
         else
-          puts response.body
+          stdout.write response.body
         end
       end
 
         private
 
-          attr_reader :auth_code, :client_id, :client_secret
+          attr_reader :auth_code, :client_id, :client_secret, :stdout
 
           def url
             'oauth2/access_token'
