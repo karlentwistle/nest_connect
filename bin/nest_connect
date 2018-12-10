@@ -22,7 +22,7 @@ module NestConnect
 
     desc 'stream', 'Debug Nest API streaming'
     def stream
-      NestConnect::API::Stream.new.start
+      NestConnect::API::Stream.new.run
     end
   end
 end
