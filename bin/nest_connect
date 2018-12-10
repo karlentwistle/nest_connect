@@ -8,9 +8,9 @@ require 'byebug'
 module NestConnect
   class App < Thor
     desc 'authorize', 'Get an access token'
-    method_option :auth_code, aliases: '-p', desc: 'Pincode to connect with Nest', required: true
-    method_option :client_id, aliases: '-i', desc: 'Client ID', required: true
-    method_option :client_secret, aliases: '-s', desc: 'Client Secret', required: true
+    method_option :auth_code, desc: 'Pincode to connect with Nest', required: true
+    method_option :client_id, desc: 'Client ID', required: true
+    method_option :client_secret, desc: 'Client Secret', required: true
 
     def authorize
       NestConnect::API::Authorize.new(
