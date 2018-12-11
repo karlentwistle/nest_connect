@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe NestConnect::API::Stream do
-  let(:stdout) { StringIO.new }
-  subject(:stream) { NestConnect::API::Stream.new(stdout: stdout) }
+  let(:output) { StringIO.new }
+  subject(:stream) { NestConnect::API::Stream.new(output: output) }
 
   describe '#run' do
     it 'outputs the response body' do
@@ -11,8 +11,8 @@ RSpec.describe NestConnect::API::Stream do
 
       stream.run
 
-      stdout.rewind
-      expect(stdout.gets).to eql("hello")
+      output.rewind
+      expect(output.gets).to eql("hello")
     end
   end
 

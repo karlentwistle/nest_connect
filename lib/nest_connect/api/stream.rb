@@ -1,8 +1,8 @@
 module NestConnect
   class API
     class Stream < API
-      def initialize(stdout: STDOUT)
-        @stdout = stdout
+      def initialize(output: STDOUT)
+        @output = output
       end
 
       def run
@@ -12,14 +12,14 @@ module NestConnect
           request.headers['Cache-Control'] = 'no-cache'
 
           request.options.on_data = Proc.new do |chunk, overall_received_bytes|
-            stdout.write chunk
+            output.write chunk
           end
         end
       end
 
       private
 
-        attr_reader :stdout
+        attr_reader :output
     end
   end
 end
