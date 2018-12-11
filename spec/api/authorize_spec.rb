@@ -45,7 +45,8 @@ RSpec.describe NestConnect::API::Authorize do
         },
         headers: {
           'Content-Type' => 'application/x-www-form-urlencoded',
-        }).
+        }
+      ).
       to_return(
         status: 200,
         body: {"access_token": "foo"}.to_json,

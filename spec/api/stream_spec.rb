@@ -23,7 +23,8 @@ RSpec.describe NestConnect::API::Stream do
           'Accept'=>'text/event-stream',
           'Authorization'=>'Bearer foo',
           'Cache-Control'=>'no-cache',
-        }).
+        }
+      ).
       to_return(
         status: 200,
         body: "hello",
