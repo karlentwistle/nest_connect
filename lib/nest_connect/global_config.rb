@@ -31,7 +31,7 @@ module NestConnect
       attr_reader :store
 
       def configure_access_token
-        raise 'configure your access token first'
+        raise 'please configure your access token first by running nest_connect authorize'
       end
   end
 end
