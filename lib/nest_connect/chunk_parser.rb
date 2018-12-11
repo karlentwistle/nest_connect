@@ -1,8 +1,8 @@
 module NestConnect
   module ChunkParser
     class << self
-      EVENT = 'event: '
-      DATA = 'data: '
+      EVENT = -'event: '
+      DATA = -'data: '
 
       def write(chunk)
         return if chunk.empty?
