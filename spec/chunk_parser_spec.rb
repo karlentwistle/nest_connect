@@ -7,17 +7,43 @@ RSpec.describe NestConnect::ChunkParser do
       subject = NestConnect::ChunkParser.write('')
       expect(subject).to be(nil)
     end
+  end
 
-    it 'unpacks a chunk with data' do
+  describe "#event" do
+    it 'returns a chunks event' do
       chunk = "event: put\ndata: {\"foo\": \"bar\"}\n"
-      subject = NestConnect::ChunkParser.write(chunk)
-      expect(subject).to eql({ foo: 'bar' })
+      subject = NestConnect::ChunkParser.new(chunk)
+      expect(subject.event).to eql('put')
+    end
+  end
+
+  describe "#data" do
+    it 'returns a chunks data' do
+      chunk = "event: put\ndata: {\"foo\": \"bar\"}\n"
+      subject = NestConnect::ChunkParser.new(chunk)
+      expect(subject.data).to eql({ foo: 'bar' })
     end
 
-    it 'unpacks a chunk with null data' do
+    it 'returns a chunks null data' do
       chunk = "event: put\ndata: null\n"
-      subject = NestConnect::ChunkParser.write(chunk)
-      expect(subject).to eql(nil)
+      subject = NestConnect::ChunkParser.new(chunk)
+      expect(subject.data).to eql(nil)
+    end
+  end
+
+  describe '#thermostats' do
+    it 'returns an empty array if data doesnt contain a thermostat' do
+      chunk = "event: put\ndata: {\"foo\": \"bar\"}\n"
+      subject = NestConnect::ChunkParser.new(chunk)
+      expect(subject.thermostats).to be_empty
+    end
+
+    it 'returns an array of thermostats if data contain thermostat data' do
+      path = File.expand_path('./fixtures/example_data.json', File.dirname(__FILE__))
+      chunk = File.read(path)
+      subject = NestConnect::ChunkParser.new(chunk)
+
+      expect(subject.thermostats).to all(be_a(NestConnect::Device::Thermostat))
     end
   end
 end
