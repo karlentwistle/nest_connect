@@ -27,13 +27,19 @@ RSpec.describe NestConnect::ChunkParser do
     it 'returns a chunks null data' do
       chunk = "event: put\ndata: null\n"
       subject = NestConnect::ChunkParser.new(chunk)
-      expect(subject.data).to eql(nil)
+      expect(subject.data).to eql({})
     end
   end
 
   describe '#thermostats' do
     it 'returns an empty array if data doesnt contain a thermostat' do
       chunk = "event: put\ndata: {\"foo\": \"bar\"}\n"
+      subject = NestConnect::ChunkParser.new(chunk)
+      expect(subject.thermostats).to be_empty
+    end
+
+    it 'returns an empty array if chunks data is null' do
+      chunk = "event: put\ndata: null\n"
       subject = NestConnect::ChunkParser.new(chunk)
       expect(subject.thermostats).to be_empty
     end

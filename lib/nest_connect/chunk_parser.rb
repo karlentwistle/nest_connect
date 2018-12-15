@@ -18,7 +18,7 @@ module NestConnect
     end
 
     def data
-      JSON.parse(data_line, symbolize_names: true)
+      JSON.parse(data_line, symbolize_names: true) || {}
     end
 
     def thermostats

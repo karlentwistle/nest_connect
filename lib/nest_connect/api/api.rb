@@ -15,6 +15,7 @@ module NestConnect
           faraday.use FaradayMiddleware::FollowRedirects
           faraday.adapter Faraday.default_adapter
           faraday.response :json, :content_type => 'application/json'
+          faraday.request :json
         end
       end
 
@@ -30,3 +31,4 @@ end
 
 require_relative 'authorize'
 require_relative 'stream'
+require_relative 'devices/thermostat'
