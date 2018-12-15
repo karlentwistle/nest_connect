@@ -22,7 +22,7 @@ module NestConnect
     end
 
     def thermostats
-      Device::Thermostat.from_hash(thermostats_hash)
+      Device::Thermostat.from_hash_collection(thermostats_hash)
     end
 
     private

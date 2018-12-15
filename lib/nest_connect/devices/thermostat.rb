@@ -3,7 +3,7 @@ module NestConnect
 
   class Device
     class Thermostat
-      def self.from_hash(hash)
+      def self.from_hash_collection(hash)
         hash.values.map { |value| new(value) }
       end
 

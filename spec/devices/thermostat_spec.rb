@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 RSpec.describe NestConnect::Device::Thermostat do
-  describe '.from_hash' do
+  describe '.from_hash_collection' do
     it 'creates an array of thermostats from json' do
       path = File.expand_path('../fixtures/thermostats.json', File.dirname(__FILE__))
       hash = JSON.parse(File.read(path), symbolize_names: true)
 
-      subject = NestConnect::Device::Thermostat.from_hash(hash)
+      subject = NestConnect::Device::Thermostat.from_hash_collection(hash)
 
       expect(subject).to include(
         an_object_having_attributes(
