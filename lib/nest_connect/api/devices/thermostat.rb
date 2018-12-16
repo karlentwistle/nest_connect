@@ -6,7 +6,7 @@ module NestConnect
           @device_id = device_id
         end
 
-        def run(body)
+        def put(body)
           connection.put do |request|
             request.url(url)
             request.headers.merge!(headers)

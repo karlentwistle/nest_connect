@@ -26,7 +26,7 @@ module NestConnect
           raise RangeError.new("target_temperature_f must be between #{TARGET_TEMPERATURE_F_RANGE}")
         end
 
-        api_runner.run({target_temperature_f: normalized_value})
+        api_runner.put({target_temperature_f: normalized_value})
         @target_temperature_f = normalized_value
       end
 
@@ -41,7 +41,7 @@ module NestConnect
           raise RangeError.new("target_temperature_c must be between #{TARGET_TEMPERATURE_C_RANGE}")
         end
 
-        api_runner.run({target_temperature_c: normalized_value})
+        api_runner.put({target_temperature_c: normalized_value})
         @target_temperature_c = normalized_value
       end
 
@@ -50,7 +50,7 @@ module NestConnect
       def fan_timer_active=(value)
         normalized_value = !!value
 
-        api_runner.run({fan_timer_active: normalized_value})
+        api_runner.put({fan_timer_active: normalized_value})
         @fan_timer_active = normalized_value
       end
 
@@ -63,7 +63,7 @@ module NestConnect
           raise ValueError.new("fan_timer_duration must be #{FAN_TIMER_DURATION_VALUES}")
         end
 
-        api_runner.run({fan_timer_duration: value})
+        api_runner.put({fan_timer_duration: value})
         @fan_timer_duration = value
       end
 
@@ -76,7 +76,7 @@ module NestConnect
           raise ValueError.new("hvac_mode must be #{HVAC_MODE_VALUES}")
         end
 
-        api_runner.run({hvac_mode: value})
+        api_runner.put({hvac_mode: value})
         @hvac_mode = value
       end
 
@@ -85,7 +85,7 @@ module NestConnect
       def label=(value)
         normalized_value = value.to_s
 
-        api_runner.run({label: normalized_value})
+        api_runner.put({label: normalized_value})
         @label = normalized_value
       end
 
@@ -94,7 +94,7 @@ module NestConnect
       def target_temperature_high_c=(value)
         normalized_value = (value * 2).round / 2.0
 
-        api_runner.run({target_temperature_high_c: normalized_value})
+        api_runner.put({target_temperature_high_c: normalized_value})
         @target_temperature_high_c = normalized_value
       end
 
@@ -103,7 +103,7 @@ module NestConnect
       def target_temperature_low_c=(value)
         normalized_value = (value * 2).round / 2.0
 
-        api_runner.run({target_temperature_low_c: normalized_value})
+        api_runner.put({target_temperature_low_c: normalized_value})
         @target_temperature_low_c = normalized_value
       end
 
@@ -112,7 +112,7 @@ module NestConnect
       def target_temperature_high_f=(value)
         normalized_value = value.round
 
-        api_runner.run({target_temperature_high_f: normalized_value})
+        api_runner.put({target_temperature_high_f: normalized_value})
         @target_temperature_high_f = normalized_value
       end
 
@@ -121,7 +121,7 @@ module NestConnect
       def target_temperature_low_f=(value)
         normalized_value = value.round
 
-        api_runner.run({target_temperature_low_f: normalized_value})
+        api_runner.put({target_temperature_low_f: normalized_value})
         @target_temperature_low_f = normalized_value
       end
 
@@ -134,7 +134,7 @@ module NestConnect
           raise ValueError.new("temperature_scale must be #{TEMPERATURE_SCALE_VALUES}")
         end
 
-        api_runner.run({temperature_scale: value})
+        api_runner.put({temperature_scale: value})
         @temperature_scale = value
       end
 
