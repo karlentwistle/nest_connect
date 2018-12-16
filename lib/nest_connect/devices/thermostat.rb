@@ -1,5 +1,6 @@
 module NestConnect
   class RangeError < StandardError; end
+  class ValueError < StandardError; end
 
   class Device
     class Thermostat
@@ -21,7 +22,7 @@ module NestConnect
       def target_temperature_f=(value)
         normalized_value = value.round
 
-        unless (50..90).include?(normalized_value)
+        unless TARGET_TEMPERATURE_F_RANGE.include?(normalized_value)
           raise RangeError.new("target_temperature_f must be between #{TARGET_TEMPERATURE_F_RANGE}")
         end
 
@@ -36,7 +37,7 @@ module NestConnect
       def target_temperature_c=(value)
         normalized_value = (value * 2).round / 2.0
 
-        unless (9..30).include?(normalized_value)
+        unless TARGET_TEMPERATURE_C_RANGE.include?(normalized_value)
           raise RangeError.new("target_temperature_c must be between #{TARGET_TEMPERATURE_C_RANGE}")
         end
 
@@ -53,8 +54,20 @@ module NestConnect
         @fan_timer_active = normalized_value
       end
 
+      FAN_TIMER_DURATION_VALUES = [15, 30, 45, 60, 120, 240, 480, 720]
+
+      attr_reader :fan_timer_duration
+
+      def fan_timer_duration=(value)
+        unless FAN_TIMER_DURATION_VALUES.include?(value)
+          raise ValueError.new("fan_timer_duration must be #{FAN_TIMER_DURATION_VALUES}")
+        end
+
+        api_runner.run({fan_timer_duration: value})
+        @fan_timer_duration = value
+      end
+
       attr_accessor(
-        :fan_timer_duration,
         :hvac_mode,
         :label,
         :target_temperature_high_c,

@@ -180,4 +180,47 @@ RSpec.describe NestConnect::Device::Thermostat do
       expect(api_class).to have_received(:run).with({fan_timer_active: false})
     end
   end
+
+  describe '#fan_timer_duration' do
+    it 'writes the fan_timer_duration attribute' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        fan_timer_duration: nil,
+        api_class: api_class
+      )
+
+      subject.fan_timer_duration = 15
+
+      expect(subject.fan_timer_duration).to eql(15)
+    end
+
+    it 'raises an error if fan_timer_duration is invalid' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        fan_timer_duration: nil,
+        api_class: api_class
+      )
+
+      expect {
+        subject.fan_timer_duration = 20
+      }.to raise_error(NestConnect::ValueError, 'fan_timer_duration must be [15, 30, 45, 60, 120, 240, 480, 720]')
+    end
+
+    it 'delegates request to api_class' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        fan_timer_duration: nil,
+        api_class: api_class
+      )
+
+      subject.fan_timer_duration = 720
+
+      expect(api_class).to have_received(:new).with('device_id')
+      expect(api_class).to have_received(:run).with({fan_timer_duration: 720})
+    end
+  end
+
 end
