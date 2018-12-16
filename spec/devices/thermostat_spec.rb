@@ -461,4 +461,46 @@ RSpec.describe NestConnect::Device::Thermostat do
       expect(api_class).to have_received(:run).with({target_temperature_low_f: 20})
     end
   end
+
+  describe '#temperature_scale' do
+    it 'writes the temperature_scale attribute' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        temperature_scale: nil,
+        api_class: api_class
+      )
+
+      subject.temperature_scale = 'F'
+
+      expect(subject.temperature_scale).to eql('F')
+    end
+
+    it 'raises an error if temperature_scale is invalid' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        temperature_scale: nil,
+        api_class: api_class
+      )
+
+      expect {
+        subject.temperature_scale = 'foo'
+      }.to raise_error(NestConnect::ValueError, 'temperature_scale must be ["C", "F"]')
+    end
+
+    it 'delegates request to api_class' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        temperature_scale: nil,
+        api_class: api_class
+      )
+
+      subject.temperature_scale = 'C'
+
+      expect(api_class).to have_received(:new).with('device_id')
+      expect(api_class).to have_received(:run).with({temperature_scale: 'C'})
+    end
+  end
 end

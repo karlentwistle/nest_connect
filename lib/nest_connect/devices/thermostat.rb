@@ -125,9 +125,18 @@ module NestConnect
         @target_temperature_low_f = normalized_value
       end
 
-      attr_accessor(
-        :temperature_scale
-      )
+      TEMPERATURE_SCALE_VALUES = ['C', 'F']
+
+      attr_reader :temperature_scale
+
+      def temperature_scale=(value)
+        unless TEMPERATURE_SCALE_VALUES.include?(value)
+          raise ValueError.new("temperature_scale must be #{TEMPERATURE_SCALE_VALUES}")
+        end
+
+        api_runner.run({temperature_scale: value})
+        @temperature_scale = value
+      end
 
       attr_reader(
         :ambient_temperature_c,
