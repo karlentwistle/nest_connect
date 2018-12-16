@@ -336,6 +336,49 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
+
+  describe '#target_temperature_low_c' do
+    it 'writes the target_temperature_low_c attribute' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        target_temperature_low_c: nil,
+        api_class: api_class
+      )
+
+      subject.target_temperature_low_c = 18.0
+
+      expect(subject.target_temperature_low_c).to eql(18.0)
+    end
+
+    it 'converts number to half degrees Celsius (0.5°C)' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        target_temperature_low_c: nil,
+        api_class: api_class
+      )
+
+      subject.target_temperature_low_c = 19.6
+
+      expect(subject.target_temperature_low_c).to eql(19.5)
+    end
+
+    it 'sends a request api_class' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        target_temperature_low_c: nil,
+        api_class: api_class
+      )
+
+      subject.target_temperature_low_c = 19.6
+
+      expect(api_class).to have_received(:new).with('device_id')
+      expect(api_class).to have_received(:run).with({target_temperature_low_c: 19.5})
+    end
+  end
+
   describe '#target_temperature_high_f' do
     it 'writes the target_temperature_high_f attribute' do
       api_class = spy(api_class)

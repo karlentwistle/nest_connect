@@ -98,6 +98,15 @@ module NestConnect
         @target_temperature_high_c = normalized_value
       end
 
+      attr_reader :target_temperature_low_c
+
+      def target_temperature_low_c=(value)
+        normalized_value = (value * 2).round / 2.0
+
+        api_runner.run({target_temperature_low_c: normalized_value})
+        @target_temperature_low_c = normalized_value
+      end
+
       attr_reader :target_temperature_high_f
 
       def target_temperature_high_f=(value)
@@ -108,7 +117,6 @@ module NestConnect
       end
 
       attr_accessor(
-        :target_temperature_low_c,
         :target_temperature_low_f,
         :temperature_scale
       )
