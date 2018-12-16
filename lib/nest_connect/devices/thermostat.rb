@@ -80,8 +80,16 @@ module NestConnect
         @hvac_mode = value
       end
 
+      attr_reader :label
+
+      def label=(value)
+        normalized_value = value.to_s
+
+        api_runner.run({label: normalized_value})
+        @label = normalized_value
+      end
+
       attr_accessor(
-        :label,
         :target_temperature_high_c,
         :target_temperature_high_f,
         :target_temperature_low_c,

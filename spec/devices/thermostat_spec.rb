@@ -264,4 +264,33 @@ RSpec.describe NestConnect::Device::Thermostat do
       expect(api_class).to have_received(:run).with({hvac_mode: 'cool'})
     end
   end
+
+  describe '#label' do
+    it 'writes the label attribute' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        label: nil,
+        api_class: api_class
+      )
+
+      subject.label = 'Upstairs'
+
+      expect(subject.label).to eql('Upstairs')
+    end
+
+    it 'delegates request to api_class' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        label: nil,
+        api_class: api_class
+      )
+
+      subject.label = 'Playroom'
+
+      expect(api_class).to have_received(:new).with('device_id')
+      expect(api_class).to have_received(:run).with({label: 'Playroom'})
+    end
+  end
 end
