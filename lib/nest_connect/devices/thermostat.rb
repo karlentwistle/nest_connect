@@ -67,8 +67,20 @@ module NestConnect
         @fan_timer_duration = value
       end
 
+      HVAC_MODE_VALUES = ['heat', 'cool', 'heat-cool', 'eco', 'off']
+
+      attr_reader :hvac_mode
+
+      def hvac_mode=(value)
+        unless HVAC_MODE_VALUES.include?(value)
+          raise ValueError.new("hvac_mode must be #{HVAC_MODE_VALUES}")
+        end
+
+        api_runner.run({hvac_mode: value})
+        @hvac_mode = value
+      end
+
       attr_accessor(
-        :hvac_mode,
         :label,
         :target_temperature_high_c,
         :target_temperature_high_f,

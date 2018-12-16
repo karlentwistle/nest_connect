@@ -223,4 +223,45 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
+  describe '#hvac_mode' do
+    it 'writes the hvac_mode attribute' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        hvac_mode: nil,
+        api_class: api_class
+      )
+
+      subject.hvac_mode = 'heat'
+
+      expect(subject.hvac_mode).to eql('heat')
+    end
+
+    it 'raises an error if hvac_mode is invalid' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        hvac_mode: nil,
+        api_class: api_class
+      )
+
+      expect {
+        subject.hvac_mode = 'foo'
+      }.to raise_error(NestConnect::ValueError, 'hvac_mode must be ["heat", "cool", "heat-cool", "eco", "off"]')
+    end
+
+    it 'delegates request to api_class' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        hvac_mode: nil,
+        api_class: api_class
+      )
+
+      subject.hvac_mode = 'cool'
+
+      expect(api_class).to have_received(:new).with('device_id')
+      expect(api_class).to have_received(:run).with({hvac_mode: 'cool'})
+    end
+  end
 end
