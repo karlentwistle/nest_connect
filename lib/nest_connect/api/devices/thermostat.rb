@@ -14,6 +14,13 @@ module NestConnect
           end
         end
 
+        def get
+          connection.get do |request|
+            request.url(url)
+            request.headers.merge!(headers)
+          end
+        end
+
         private
 
           attr_reader :device_id
