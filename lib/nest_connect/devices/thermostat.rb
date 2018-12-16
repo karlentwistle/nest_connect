@@ -44,8 +44,16 @@ module NestConnect
         @target_temperature_c = normalized_value
       end
 
+      attr_reader :fan_timer_active
+
+      def fan_timer_active=(value)
+        normalized_value = !!value
+
+        api_runner.run({fan_timer_active: normalized_value})
+        @fan_timer_active = normalized_value
+      end
+
       attr_accessor(
-        :fan_timer_active,
         :fan_timer_duration,
         :hvac_mode,
         :label,

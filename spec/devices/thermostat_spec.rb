@@ -16,7 +16,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe 'target_temperature_f' do
+  describe '#target_temperature_f' do
     it 'writes the target_temperature_f attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -84,7 +84,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe 'target_temperature_c' do
+  describe '#target_temperature_c' do
     it 'writes the target_temperature_c attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -149,6 +149,35 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       expect(api_class).to have_received(:new).with('device_id')
       expect(api_class).to have_received(:run).with({target_temperature_c: 19.5})
+    end
+  end
+
+  describe '#fan_timer_active' do
+    it 'writes the fan_timer_active attribute' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        fan_timer_active: nil,
+        api_class: api_class
+      )
+
+      subject.fan_timer_active = true
+
+      expect(subject.fan_timer_active).to eql(true)
+    end
+
+    it 'delegates request to api_class' do
+      api_class = spy(api_class)
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        fan_timer_active: nil,
+        api_class: api_class
+      )
+
+      subject.fan_timer_active = false
+
+      expect(api_class).to have_received(:new).with('device_id')
+      expect(api_class).to have_received(:run).with({fan_timer_active: false})
     end
   end
 end
