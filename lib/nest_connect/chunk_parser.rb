@@ -25,6 +25,10 @@ module NestConnect
       Device::Thermostat.from_hash_collection(thermostats_hash)
     end
 
+    def protects
+      Device::Protect.from_hash_collection(smoke_co_alarms_hash)
+    end
+
     private
 
       def data_hash
@@ -37,6 +41,10 @@ module NestConnect
 
       def thermostats_hash
         devices_hash.fetch(:thermostats, {})
+      end
+
+      def smoke_co_alarms_hash
+        devices_hash.fetch(:smoke_co_alarms, {})
       end
 
       def data_line

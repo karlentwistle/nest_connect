@@ -32,3 +32,4 @@ end
 require_relative 'authorize'
 require_relative 'stream'
 require_relative 'devices/thermostat'
+require_relative 'devices/protect'
