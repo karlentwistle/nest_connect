@@ -16,6 +16,30 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
+  describe '#reload' do
+    it 'rewrites all attributes from the api_class' do
+      remote_attributes = { label: 'foo', temperature_scale: 'F' }
+      api_class = double(
+        new: double(
+          get: double(
+            body: remote_attributes
+          )
+        )
+      )
+      subject = NestConnect::Device::Thermostat.new(
+        device_id: 'device_id',
+        label: nil,
+        temperature_scale: nil,
+        api_class: api_class
+      )
+
+      subject.reload
+
+      expect(subject.label).to eql('foo')
+      expect(subject.temperature_scale).to eql('F')
+    end
+  end
+
   describe '#target_temperature_f' do
     it 'writes the target_temperature_f attribute' do
       api_class = spy(api_class)

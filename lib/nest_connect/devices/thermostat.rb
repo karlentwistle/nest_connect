@@ -15,6 +15,12 @@ module NestConnect
         end
       end
 
+      def reload
+        api_runner.get.body.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
+      end
+
       TARGET_TEMPERATURE_F_RANGE = (50..90)
 
       attr_reader :target_temperature_f
