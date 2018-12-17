@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe NestConnect::Device::Thermostat do
   describe '.from_hash_collection' do
-    it 'creates an array of thermostats from json' do
+    it 'creates an array of thermostats from hash' do
       path = File.expand_path('../fixtures/thermostats.json', File.dirname(__FILE__))
       hash = JSON.parse(File.read(path), symbolize_names: true)
 
@@ -40,7 +40,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#target_temperature_f' do
+  describe '#target_temperature_f=' do
     it 'writes the target_temperature_f attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -108,7 +108,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#target_temperature_c' do
+  describe '#target_temperature_c=' do
     it 'writes the target_temperature_c attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -176,7 +176,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#fan_timer_active' do
+  describe '#fan_timer_active=' do
     it 'writes the fan_timer_active attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -205,7 +205,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#fan_timer_duration' do
+  describe '#fan_timer_duration=' do
     it 'writes the fan_timer_duration attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -247,7 +247,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#hvac_mode' do
+  describe '#hvac_mode=' do
     it 'writes the hvac_mode attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -289,7 +289,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#label' do
+  describe '#label=' do
     it 'writes the label attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -318,7 +318,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#target_temperature_high_c' do
+  describe '#target_temperature_high_c=' do
     it 'writes the target_temperature_high_c attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -360,7 +360,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#target_temperature_low_c' do
+  describe '#target_temperature_low_c=' do
     it 'writes the target_temperature_low_c attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -402,7 +402,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#target_temperature_high_f' do
+  describe '#target_temperature_high_f=' do
     it 'writes the target_temperature_high_f attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -444,7 +444,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#target_temperature_low_f' do
+  describe '#target_temperature_low_f=' do
     it 'writes the target_temperature_low_f attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
@@ -486,7 +486,7 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
-  describe '#temperature_scale' do
+  describe '#temperature_scale=' do
     it 'writes the temperature_scale attribute' do
       api_class = spy(api_class)
       subject = NestConnect::Device::Thermostat.new(
