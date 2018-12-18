@@ -74,4 +74,26 @@ RSpec.describe NestConnect::ChunkParser do
       expect(subject.protects).to all(be_a(NestConnect::Device::Protect))
     end
   end
+
+  describe '#cameras' do
+    it 'returns an empty array if data doesnt contain a camera' do
+      chunk = "event: put\ndata: {\"foo\": \"bar\"}\n"
+      subject = NestConnect::ChunkParser.new(chunk)
+      expect(subject.cameras).to be_empty
+    end
+
+    it 'returns an empty array if chunks data is null' do
+      chunk = "event: put\ndata: null\n"
+      subject = NestConnect::ChunkParser.new(chunk)
+      expect(subject.cameras).to be_empty
+    end
+
+    it 'returns an array of cameras if data contain cameras data' do
+      path = File.expand_path('./fixtures/example_data.json', File.dirname(__FILE__))
+      chunk = File.read(path)
+      subject = NestConnect::ChunkParser.new(chunk)
+
+      expect(subject.cameras).to all(be_a(NestConnect::Device::Camera))
+    end
+  end
 end

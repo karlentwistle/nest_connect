@@ -1,0 +1,43 @@
+{
+  "bCKbUR5t6SKKuHXCZID8hMbg6FH_6sANB86MZCuYbS-Lax5AKGRHfw":{
+     "name":"Den (8285)",
+     "software_version":"1.0.2",
+     "where_id":"_030-yV5yVx7MXTv2kPUvOnyRUFn-kXgDmo7nH5WIhAD08s3gsfJ2Q",
+     "device_id":"bCKbUR5t6SKKuHXCZID8hMbg6FH_6sANB86MZCuYbS-Lax5AKGRHfw",
+     "structure_id":"4MThjmvqeLr-V9ieUZSD_etWKDjoljZqdubYcj6jWMb5fAMd2U-IOQ",
+     "is_online":true,
+     "is_streaming":false,
+     "is_audio_input_enabled":true,
+     "last_is_online_change":"2015-08-03T04:05:06.637Z",
+     "is_video_history_enabled":true,
+     "is_public_share_enabled":true,
+     "snapshot_url":"https://developer.nest.com/simulator/api/v1/nest/devices/camera/snapshot",
+     "activity_zones":[
+        {
+           "name":"sample activity zone",
+           "id":0
+        },
+        {
+           "name":"another sample",
+           "id":1
+        }
+     ],
+     "last_event":{
+        "has_sound":false,
+        "has_motion":true,
+        "has_person":false,
+        "start_time":"2018-12-18T22:43:37.734Z",
+        "end_time":"2018-12-18T22:43:44.494Z",
+        "urls_expire_time":"2018-12-28T22:43:37.734Z",
+        "web_url":"https://home.nest.com/cameras/CjZiQ0tiVVI1dDZTS0t1SFhDWklEOGhNYmc2RkhfNnNBTkI4Nk1aQ3VZYlMtTGF4NUFLR1JIZncSFk9iTTdicFNqUklBNl9FNlhkdS1VT0EaNjFoX2ltMEtPODJfQlVRaDlCZlZmUjdTRjNqZ3VPaXlKWlNYU1cwZ0lVQVdhb2lyWlhRck94QQ/cuepoints/bvnxVKAwirU7inNIwnBA_p4W3unEXfJj?auth=516lgcbNYGuwhuXf8BabA-pMsGXG9XmoiqiKA2nP_kuwwJap06lJ2tXFi9UZk-XOOD5vl45BFkLfj8zmX2LJUNTNxSjg-CuNEXPnwkRxq7_EpkSJNw42FIVGZBKxtaEFE-60EcKlGm8pKE-0C3620LRgRo9FUwItAFRHzlkIsq5IBqAnrB0LkIFCaMcswDXXf4J3OJPZSCbTxk",
+        "app_url":"nestmobile://cameras/CjZiQ0tiVVI1dDZTS0t1SFhDWklEOGhNYmc2RkhfNnNBTkI4Nk1aQ3VZYlMtTGF4NUFLR1JIZncSFk9iTTdicFNqUklBNl9FNlhkdS1VT0EaNjFoX2ltMEtPODJfQlVRaDlCZlZmUjdTRjNqZ3VPaXlKWlNYU1cwZ0lVQVdhb2lyWlhRck94QQ/cuepoints/bvnxVKAwirU7inNIwnBA_p4W3unEXfJj?auth=516lgcbNYGuwhuXf8BabA-pMsGXG9XmoiqiKA2nP_kuwwJap06lJ2tXFi9UZk-XOOD5vl45BFkLfj8zmX2LJUNTNxSjg-CuNEXPnwkRxq7_EpkSJNw42FIVGZBKxtaEFE-60EcKlGm8pKE-0C3620LRgRo9FUwItAFRHzlkIsq5IBqAnrB0LkIFCaMcswDXXf4J3OJPZSCbTxk",
+        "image_url":"https://developer.nest.com/simulator/api/v1/nest/devices/camera/images/image/CjZiQ0tiVVI1dDZTS0t1SFhDWklEOGhNYmc2RkhfNnNBTkI4Nk1aQ3VZYlMtTGF4NUFLR1JIZncSFk9iTTdicFNqUklBNl9FNlhkdS1VT0EaNjFoX2ltMEtPODJfQlVRaDlCZlZmUjdTRjNqZ3VPaXlKWlNYU1cwZ0lVQVdhb2lyWlhRck94QQ/1oD7nKRMNHCmZVSlwunrGYiVurFRI2km?auth=516lgcbNYGuwhuXf8BabA-pMsGXG9XmoiqiKA2nP_kuwwJap06lJ2tXFi9UZk-XOOD5vl45BFkLfj8zmX2LJUNTNxSjg-CuNEXPnwkRxq7_EpkSJNw42FIVGZBKxtaEFE-60EcKlGm8pKE-0C3620LRgRo9FUwItAFRHzlkIsq5IBqAnrB0LkIFCaMcswDXXf4J3OJPZSCbTxk",
+        "animated_image_url":"https://developer.nest.com/simulator/api/v1/nest/devices/camera/images/animated_image/CjZiQ0tiVVI1dDZTS0t1SFhDWklEOGhNYmc2RkhfNnNBTkI4Nk1aQ3VZYlMtTGF4NUFLR1JIZncSFk9iTTdicFNqUklBNl9FNlhkdS1VT0EaNjFoX2ltMEtPODJfQlVRaDlCZlZmUjdTRjNqZ3VPaXlKWlNYU1cwZ0lVQVdhb2lyWlhRck94QQ/H1_Y5PxuY6Q66_M1yJZnZBByTwP-n2EL?auth=516lgcbNYGuwhuXf8BabA-pMsGXG9XmoiqiKA2nP_kuwwJap06lJ2tXFi9UZk-XOOD5vl45BFkLfj8zmX2LJUNTNxSjg-CuNEXPnwkRxq7_EpkSJNw42FIVGZBKxtaEFE-60EcKlGm8pKE-0C3620LRgRo9FUwItAFRHzlkIsq5IBqAnrB0LkIFCaMcswDXXf4J3OJPZSCbTxk"
+     },
+     "where_name":"Den",
+     "name_long":"Den Camera (8285)",
+     "web_url":"https://home.nest.com/cameras/CjZiQ0tiVVI1dDZTS0t1SFhDWklEOGhNYmc2RkhfNnNBTkI4Nk1aQ3VZYlMtTGF4NUFLR1JIZncSFk9iTTdicFNqUklBNl9FNlhkdS1VT0EaNjFoX2ltMEtPODJfQlVRaDlCZlZmUjdTRjNqZ3VPaXlKWlNYU1cwZ0lVQVdhb2lyWlhRck94QQ?auth=516lgcbNYGuwhuXf8BabA-pMsGXG9XmoiqiKA2nP_kuwwJap06lJ2tXFi9UZk-XOOD5vl45BFkLfj8zmX2LJUNTNxSjg-CuNEXPnwkRxq7_EpkSJNw42FIVGZBKxtaEFE-60EcKlGm8pKE-0C3620LRgRo9FUwItAFRHzlkIsq5IBqAnrB0LkIFCaMcswDXXf4J3OJPZSCbTxk",
+     "app_url":"nestmobile://cameras/CjZiQ0tiVVI1dDZTS0t1SFhDWklEOGhNYmc2RkhfNnNBTkI4Nk1aQ3VZYlMtTGF4NUFLR1JIZncSFk9iTTdicFNqUklBNl9FNlhkdS1VT0EaNjFoX2ltMEtPODJfQlVRaDlCZlZmUjdTRjNqZ3VPaXlKWlNYU1cwZ0lVQVdhb2lyWlhRck94QQ?auth=516lgcbNYGuwhuXf8BabA-pMsGXG9XmoiqiKA2nP_kuwwJap06lJ2tXFi9UZk-XOOD5vl45BFkLfj8zmX2LJUNTNxSjg-CuNEXPnwkRxq7_EpkSJNw42FIVGZBKxtaEFE-60EcKlGm8pKE-0C3620LRgRo9FUwItAFRHzlkIsq5IBqAnrB0LkIFCaMcswDXXf4J3OJPZSCbTxk"
+  }
+}
+

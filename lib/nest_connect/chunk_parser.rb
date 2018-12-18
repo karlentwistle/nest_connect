@@ -29,6 +29,10 @@ module NestConnect
       Device::Protect.from_hash_collection(smoke_co_alarms_hash)
     end
 
+    def cameras
+      Device::Camera.from_hash_collection(cameras_hash)
+    end
+
     private
 
       def data_hash
@@ -45,6 +49,10 @@ module NestConnect
 
       def smoke_co_alarms_hash
         devices_hash.fetch(:smoke_co_alarms, {})
+      end
+
+      def cameras_hash
+        devices_hash.fetch(:cameras, {})
       end
 
       def data_line
