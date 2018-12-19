@@ -1,5 +1,6 @@
 require 'faraday'
 require 'faraday_middleware'
+require 'json'
 require_relative 'adapter/streaming_net_http'
 
 module NestConnect
