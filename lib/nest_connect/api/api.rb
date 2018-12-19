@@ -1,5 +1,6 @@
 require 'faraday'
 require 'faraday_middleware'
+require_relative 'adapter/streaming_net_http'
 
 module NestConnect
   class API
@@ -12,10 +13,10 @@ module NestConnect
 
       def connection
         Faraday.new(url: api_endpoint) do |faraday|
-          faraday.use FaradayMiddleware::FollowRedirects
-          faraday.adapter Faraday.default_adapter
           faraday.response :json, :content_type => 'application/json'
           faraday.request :json
+          faraday.use FaradayMiddleware::FollowRedirects
+          faraday.use NestConnect::Adapter::StreamingNetHttp
         end
       end
 

@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/lostisland/faraday.git
-  revision: f1b2657523f9d95ba5594edce7f707a2545171f8
-  branch: 1.0
-  specs:
-    faraday (0.15.3)
-      multipart-post (>= 1.2, < 3)
-
 PATH
   remote: .
   specs:
@@ -23,6 +15,8 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.3)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     hashdiff (0.3.7)
@@ -55,7 +49,6 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.17)
   byebug
-  faraday!
   nest_connect!
   rake (~> 10.0)
   rspec (~> 3.0)
