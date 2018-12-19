@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'bundler/setup'
 require 'nest_connect'
 require 'thor'
-require 'byebug'
 
 module NestConnect
   class App < Thor
