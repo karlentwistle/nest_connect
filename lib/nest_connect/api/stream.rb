@@ -1,8 +1,9 @@
 module NestConnect
   class API
     class Stream < API
-      def initialize(output: STDOUT)
+      def initialize(output: STDOUT, access_token: nil)
         @output = output
+        @access_token = access_token
       end
 
       def run

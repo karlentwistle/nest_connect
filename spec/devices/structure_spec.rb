@@ -6,13 +6,23 @@ RSpec.describe NestConnect::Device::Structure do
       path = File.expand_path('../fixtures/structures.json', File.dirname(__FILE__))
       hash = JSON.parse(File.read(path), symbolize_names: true)
 
-      subject = NestConnect::Device::Structure.from_hash_collection(hash)
+      subject = described_class.from_hash_collection(hash)
 
       expect(subject).to include(
         an_object_having_attributes(
           structure_id: "4MThjmvqeLr-V9ieUZSD_etWKDjoljZqdubYcj6jWMb5fAMd2U-IOQ"
         )
       )
+    end
+  end
+
+  describe '#access_token=' do
+    it 'allows access_token to be overwritten' do
+      subject = described_class.new(device_id: 'device_id')
+
+      subject.access_token = '1234'
+
+      expect(subject.access_token).to eql('1234')
     end
   end
 
@@ -26,7 +36,7 @@ RSpec.describe NestConnect::Device::Structure do
           )
         )
       )
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         structure_id: 'structure_id',
         name: nil,
         country_code: 'UK',
@@ -43,7 +53,7 @@ RSpec.describe NestConnect::Device::Structure do
   describe '#away=' do
     it 'writes the away attribute' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         structure_id: 'structure_id',
         away: nil,
         api_class: api_class
@@ -56,7 +66,7 @@ RSpec.describe NestConnect::Device::Structure do
 
     it 'raises an error if away is invalid' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         structure_id: 'structure_id',
         away: nil,
         api_class: api_class
@@ -69,7 +79,7 @@ RSpec.describe NestConnect::Device::Structure do
 
     it 'delegates request to api_class' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         structure_id: 'structure_id',
         away: nil,
         api_class: api_class
@@ -77,7 +87,7 @@ RSpec.describe NestConnect::Device::Structure do
 
       subject.away = 'away'
 
-      expect(api_class).to have_received(:new).with('structure_id')
+      expect(api_class).to have_received(:new).with('structure_id', access_token: nil)
       expect(api_class).to have_received(:put).with({away: 'away'})
     end
   end
@@ -85,7 +95,7 @@ RSpec.describe NestConnect::Device::Structure do
   describe '#name=' do
     it 'writes the name attribute' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         structure_id: 'structure_id',
         name: nil,
         api_class: api_class
@@ -98,7 +108,7 @@ RSpec.describe NestConnect::Device::Structure do
 
     it 'delegates request to api_class' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         structure_id: 'structure_id',
         name: nil,
         api_class: api_class
@@ -106,7 +116,7 @@ RSpec.describe NestConnect::Device::Structure do
 
       subject.name = 'Home'
 
-      expect(api_class).to have_received(:new).with('structure_id')
+      expect(api_class).to have_received(:new).with('structure_id', access_token: nil)
       expect(api_class).to have_received(:put).with({name: 'Home'})
     end
   end
@@ -114,7 +124,7 @@ RSpec.describe NestConnect::Device::Structure do
   describe '#thermostats' do
     it 'returns an empty array if data contains no thermostats' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         thermostats: nil,
         api_class: api_class
       )
@@ -124,7 +134,7 @@ RSpec.describe NestConnect::Device::Structure do
 
     it 'returns an array of thermostats if data contain thermostat data' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         thermostats: ['device_id'],
         name: nil,
         api_class: api_class
@@ -137,7 +147,7 @@ RSpec.describe NestConnect::Device::Structure do
   describe '#protects' do
     it 'returns an empty array if data contains no protects' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         protects: nil,
         api_class: api_class
       )
@@ -147,7 +157,7 @@ RSpec.describe NestConnect::Device::Structure do
 
     it 'returns an array of protects if data contain thermostat data' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         protects: ['device_id'],
         name: nil,
         api_class: api_class
@@ -160,7 +170,7 @@ RSpec.describe NestConnect::Device::Structure do
   describe '#cameras' do
     it 'returns an empty array if data contains no cameras' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         cameras: nil,
         api_class: api_class
       )
@@ -170,7 +180,7 @@ RSpec.describe NestConnect::Device::Structure do
 
     it 'returns an array of cameras if data contain thermostat data' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Structure.new(
+      subject = described_class.new(
         cameras: ['device_id'],
         name: nil,
         api_class: api_class

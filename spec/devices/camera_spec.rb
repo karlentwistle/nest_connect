@@ -6,13 +6,23 @@ RSpec.describe NestConnect::Device::Camera do
       path = File.expand_path('../fixtures/cameras.json', File.dirname(__FILE__))
       hash = JSON.parse(File.read(path), symbolize_names: true)
 
-      subject = NestConnect::Device::Camera.from_hash_collection(hash)
+      subject = described_class.from_hash_collection(hash)
 
       expect(subject).to include(
         an_object_having_attributes(
           device_id: "bCKbUR5t6SKKuHXCZID8hMbg6FH_6sANB86MZCuYbS-Lax5AKGRHfw"
         )
       )
+    end
+  end
+
+  describe '#access_token=' do
+    it 'allows access_token to be overwritten' do
+      subject = described_class.new(device_id: 'device_id')
+
+      subject.access_token = '1234'
+
+      expect(subject.access_token).to eql('1234')
     end
   end
 
@@ -26,7 +36,7 @@ RSpec.describe NestConnect::Device::Camera do
           )
         )
       )
-      subject = NestConnect::Device::Camera.new(
+      subject = described_class.new(
         device_id: 'device_id',
         name: nil,
         is_online: nil,
@@ -43,7 +53,7 @@ RSpec.describe NestConnect::Device::Camera do
   describe '#is_streaming=' do
     it 'writes the is_streaming attribute' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Camera.new(
+      subject = described_class.new(
         device_id: 'device_id',
         is_streaming: nil,
         api_class: api_class
@@ -56,7 +66,7 @@ RSpec.describe NestConnect::Device::Camera do
 
     it 'delegates request to api_class' do
       api_class = spy(api_class)
-      subject = NestConnect::Device::Camera.new(
+      subject = described_class.new(
         device_id: 'device_id',
         is_streaming: nil,
         api_class: api_class
@@ -64,7 +74,7 @@ RSpec.describe NestConnect::Device::Camera do
 
       subject.is_streaming = true
 
-      expect(api_class).to have_received(:new).with('device_id')
+      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({is_streaming: true})
     end
   end

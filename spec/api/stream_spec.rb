@@ -4,6 +4,13 @@ RSpec.describe NestConnect::API::Stream do
   let(:output) { StringIO.new }
   subject(:stream) { NestConnect::API::Stream.new(output: output) }
 
+  describe '#access_token' do
+    it 'allows access_token to be overwritten' do
+      subject = NestConnect::API::Stream.new(output: output, access_token: '1234')
+      expect(subject.access_token).to eql('1234')
+    end
+  end
+
   describe '#run' do
     it 'outputs the response body' do
       global_config.access_token = 'foo'

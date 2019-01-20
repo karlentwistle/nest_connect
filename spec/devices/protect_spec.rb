@@ -6,13 +6,23 @@ RSpec.describe NestConnect::Device::Protect do
       path = File.expand_path('../fixtures/protects.json', File.dirname(__FILE__))
       hash = JSON.parse(File.read(path), symbolize_names: true)
 
-      subject = NestConnect::Device::Protect.from_hash_collection(hash)
+      subject = described_class.from_hash_collection(hash)
 
       expect(subject).to include(
         an_object_having_attributes(
           device_id: "JqASH_zDseagPjP6jNNUZ4iVurFRI2km"
         )
       )
+    end
+  end
+
+  describe '#access_token=' do
+    it 'allows access_token to be overwritten' do
+      subject = described_class.new(device_id: 'device_id')
+
+      subject.access_token = '1234'
+
+      expect(subject.access_token).to eql('1234')
     end
   end
 
@@ -26,7 +36,7 @@ RSpec.describe NestConnect::Device::Protect do
           )
         )
       )
-      subject = NestConnect::Device::Protect.new(
+      subject = described_class.new(
         device_id: 'device_id',
         name: nil,
         is_online: nil,

@@ -1,9 +1,10 @@
 module NestConnect
   class API
-    class Devices
+    module Devices
       class Thermostat < API
-        def initialize(device_id)
+        def initialize(device_id, access_token: nil)
           @device_id = device_id
+          @access_token = access_token
         end
 
         def put(body)

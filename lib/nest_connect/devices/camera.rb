@@ -1,19 +1,9 @@
 module NestConnect
-  class Device
-    class Camera
-      def self.from_hash_collection(hash)
-        hash.values.map { |value| new(value) }
-      end
-
+  module Device
+    class Camera < BaseDevice
       def initialize(api_class: NestConnect::API::Devices::Camera, **args)
         @api_class = api_class
         args.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
-
-      def reload
-        api_runner.get.body.each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end
@@ -50,10 +40,8 @@ module NestConnect
 
       private
 
-        attr_reader :api_class
-
         def api_runner
-          api_class.new(device_id)
+          api_class.new(device_id, access_token: access_token)
         end
     end
   end

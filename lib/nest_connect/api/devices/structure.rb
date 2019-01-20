@@ -1,9 +1,10 @@
 module NestConnect
   class API
-    class Devices
+    module Devices
       class Structure < API
-        def initialize(structure_id)
+        def initialize(structure_id, access_token: nil)
           @structure_id = structure_id
+          @access_token = access_token
         end
 
         def put(body)

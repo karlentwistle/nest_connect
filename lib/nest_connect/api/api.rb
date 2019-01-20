@@ -5,6 +5,9 @@ require_relative 'adapter/streaming_net_http'
 
 module NestConnect
   class API
+    def access_token
+      @access_token || configuration.access_token
+    end
 
     private
 
@@ -23,10 +26,6 @@ module NestConnect
 
       def configuration
         GlobalConfig.new
-      end
-
-      def access_token
-        configuration.access_token
       end
   end
 end

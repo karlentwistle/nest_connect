@@ -1,9 +1,10 @@
 module NestConnect
   class API
-    class Devices
+    module Devices
       class Protect < API
-        def initialize(device_id)
+        def initialize(device_id, access_token: nil)
           @device_id = device_id
+          @access_token = access_token
         end
 
         def get

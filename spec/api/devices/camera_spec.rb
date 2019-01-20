@@ -1,7 +1,15 @@
 require 'spec_helper'
 
 RSpec.describe NestConnect::API::Devices::Camera do
-  subject(:camera) { NestConnect::API::Devices::Camera.new('device_id') }
+  subject(:camera) { described_class.new('device_id') }
+
+  describe '#access_token' do
+    it 'allows access_token to be overwritten' do
+      subject = described_class.new('device_id', access_token: '1234')
+
+      expect(subject.access_token).to eql('1234')
+    end
+  end
 
   describe '#put' do
     it 'returns a response object' do
