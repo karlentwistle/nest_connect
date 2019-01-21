@@ -3,7 +3,7 @@ language: ruby
 install:
   - 'gem update --system'
   - 'gem --version'
-  - 'gem install bundler -v 1.17.2'
+  - 'gem install bundler'
   - 'bundle --version'
   - bundle
 rvm:
