@@ -22,6 +22,13 @@ module NestConnect
           end
         end
 
+        def all
+          connection.get do |request|
+            request.url("devices/cameras")
+            request.headers.merge!(headers)
+          end
+        end
+
         private
 
           attr_reader :device_id

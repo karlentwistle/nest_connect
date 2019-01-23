@@ -2,11 +2,31 @@ require 'spec_helper'
 
 RSpec.describe NestConnect::Device::Camera do
   describe '.from_hash_collection' do
-    it 'creates an array of protects from hash' do
+    it 'creates an array of cameras from hash' do
       path = File.expand_path('../fixtures/cameras.json', File.dirname(__FILE__))
       hash = JSON.parse(File.read(path), symbolize_names: true)
 
       subject = described_class.from_hash_collection(hash)
+
+      expect(subject).to include(
+        an_object_having_attributes(
+          device_id: "bCKbUR5t6SKKuHXCZID8hMbg6FH_6sANB86MZCuYbS-Lax5AKGRHfw"
+        )
+      )
+    end
+  end
+
+  describe '.all' do
+    it 'returns an array of cameras from api_class' do
+      path = File.expand_path('../fixtures/cameras.json', File.dirname(__FILE__))
+      api_class = double(
+        new: double(
+          all: double(
+            body: JSON.parse(File.read(path), symbolize_names: true)
+          )
+        )
+      )
+      subject = described_class.all(api_class: api_class)
 
       expect(subject).to include(
         an_object_having_attributes(

@@ -16,6 +16,26 @@ RSpec.describe NestConnect::Device::Structure do
     end
   end
 
+  describe '.all' do
+    it 'returns an array of structures from api_class' do
+      path = File.expand_path('../fixtures/structures.json', File.dirname(__FILE__))
+      api_class = double(
+        new: double(
+          all: double(
+            body: JSON.parse(File.read(path), symbolize_names: true)
+          )
+        )
+      )
+      subject = described_class.all(api_class: api_class)
+
+      expect(subject).to include(
+        an_object_having_attributes(
+          structure_id: "4MThjmvqeLr-V9ieUZSD_etWKDjoljZqdubYcj6jWMb5fAMd2U-IOQ"
+        )
+      )
+    end
+  end
+
   describe '#access_token=' do
     it 'allows access_token to be overwritten' do
       subject = described_class.new(device_id: 'device_id')

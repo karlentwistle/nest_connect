@@ -14,6 +14,13 @@ module NestConnect
           end
         end
 
+        def all
+          connection.get do |request|
+            request.url("devices/smoke_co_alarms")
+            request.headers.merge!(headers)
+          end
+        end
+
         private
 
           attr_reader :device_id

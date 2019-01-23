@@ -10,6 +10,13 @@ module NestConnect
         from_hash_collection(remote_hash)
       end
 
+      def initialize(api_class: self.class.api_class, **args)
+        @api_class = api_class
+        args.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
+      end
+
       def reload
         api_runner.get.body.each do |key, value|
           instance_variable_set("@#{key}", value)

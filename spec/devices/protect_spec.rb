@@ -16,6 +16,26 @@ RSpec.describe NestConnect::Device::Protect do
     end
   end
 
+  describe '.all' do
+    it 'returns an array of protects from api_class' do
+      path = File.expand_path('../fixtures/protects.json', File.dirname(__FILE__))
+      api_class = double(
+        new: double(
+          all: double(
+            body: JSON.parse(File.read(path), symbolize_names: true)
+          )
+        )
+      )
+      subject = described_class.all(api_class: api_class)
+
+      expect(subject).to include(
+        an_object_having_attributes(
+          device_id: "JqASH_zDseagPjP6jNNUZ4iVurFRI2km"
+        )
+      )
+    end
+  end
+
   describe '#access_token=' do
     it 'allows access_token to be overwritten' do
       subject = described_class.new(device_id: 'device_id')

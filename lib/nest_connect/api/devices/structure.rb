@@ -22,12 +22,19 @@ module NestConnect
           end
         end
 
+        def all
+          connection.get do |request|
+            request.url("structures")
+            request.headers.merge!(headers)
+          end
+        end
+
         private
 
           attr_reader :structure_id
 
           def url
-            "devices/structures/#{structure_id}"
+            "structures/#{structure_id}"
           end
 
           def headers

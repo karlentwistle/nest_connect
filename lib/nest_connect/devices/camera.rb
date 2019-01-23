@@ -1,11 +1,8 @@
 module NestConnect
   module Device
     class Camera < BaseDevice
-      def initialize(api_class: NestConnect::API::Devices::Camera, **args)
-        @api_class = api_class
-        args.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
+      def self.api_class
+        NestConnect::API::Devices::Camera
       end
 
       attr_reader(
