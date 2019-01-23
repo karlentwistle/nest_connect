@@ -17,7 +17,7 @@ module NestConnect
 
       def connection
         Faraday.new(url: api_endpoint) do |faraday|
-          faraday.response :json, :content_type => 'application/json'
+          faraday.response :json, content_type: 'application/json', parser_options: { symbolize_names: true }
           faraday.request :json
           faraday.use FaradayMiddleware::FollowRedirects
           faraday.use NestConnect::Adapter::StreamingNetHttp

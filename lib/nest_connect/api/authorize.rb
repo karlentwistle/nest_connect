@@ -16,7 +16,7 @@ module NestConnect
         end
 
         if response.status == 200
-          configuration.access_token = response.body['access_token']
+          configuration.access_token = response.body[:access_token]
         else
           stdout.write response.body
         end

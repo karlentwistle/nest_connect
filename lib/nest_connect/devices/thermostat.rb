@@ -4,7 +4,11 @@ module NestConnect
 
   module Device
     class Thermostat < BaseDevice
-      def initialize(api_class: NestConnect::API::Devices::Thermostat, **args)
+      def self.api_class
+        NestConnect::API::Devices::Thermostat
+      end
+
+      def initialize(api_class: self.class.api_class, **args)
         @api_class = api_class
         args.each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -175,7 +179,7 @@ module NestConnect
       private
 
         def api_runner
-          api_class.new(device_id, access_token: access_token)
+          api_class.new(device_id: device_id, access_token: access_token)
         end
     end
   end

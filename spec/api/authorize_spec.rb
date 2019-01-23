@@ -30,7 +30,7 @@ RSpec.describe NestConnect::API::Authorize do
       authorize.run
 
       stdout.rewind
-      expect(stdout.gets).to eql({"error_description" => "authorization code not found"}.to_s)
+      expect(stdout.gets).to eql({error_description: "authorization code not found"}.to_s)
     end
   end
 

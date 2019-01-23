@@ -2,14 +2,14 @@ module NestConnect
   class API
     module Devices
       class Thermostat < API
-        def initialize(device_id, access_token: nil)
+        def initialize(device_id: nil, access_token: nil)
           @device_id = device_id
           @access_token = access_token
         end
 
         def put(body)
           connection.put do |request|
-            request.url(url)
+            request.url("devices/thermostats/#{device_id}")
             request.headers.merge!(headers)
             request.body = body
           end
@@ -17,7 +17,14 @@ module NestConnect
 
         def get
           connection.get do |request|
-            request.url(url)
+            request.url("devices/thermostats/#{device_id}")
+            request.headers.merge!(headers)
+          end
+        end
+
+        def all
+          connection.get do |request|
+            request.url("devices/thermostats")
             request.headers.merge!(headers)
           end
         end
@@ -25,10 +32,6 @@ module NestConnect
         private
 
           attr_reader :device_id
-
-          def url
-            "devices/thermostats/#{device_id}"
-          end
 
           def headers
             {

@@ -16,6 +16,26 @@ RSpec.describe NestConnect::Device::Thermostat do
     end
   end
 
+  describe '.all' do
+    it 'returns an array of thermostats from api_class' do
+      path = File.expand_path('../fixtures/thermostats.json', File.dirname(__FILE__))
+      api_class = double(
+        new: double(
+          all: double(
+            body: JSON.parse(File.read(path), symbolize_names: true)
+          )
+        )
+      )
+      subject = described_class.all(api_class: api_class)
+
+      expect(subject).to include(
+        an_object_having_attributes(
+          device_id: "2vwN8MnK9Ycnpwi1sBA31oiVurFRI2km"
+        )
+      )
+    end
+  end
+
   describe '#access_token=' do
     it 'allows access_token to be overwritten' do
       subject = described_class.new(device_id: 'device_id')
@@ -113,7 +133,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.target_temperature_f = 64.58
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({target_temperature_f: 65})
     end
   end
@@ -181,7 +201,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.target_temperature_c = 19.6
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({target_temperature_c: 19.5})
     end
   end
@@ -210,7 +230,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.fan_timer_active = false
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({fan_timer_active: false})
     end
   end
@@ -252,7 +272,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.fan_timer_duration = 720
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({fan_timer_duration: 720})
     end
   end
@@ -294,7 +314,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.hvac_mode = 'cool'
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({hvac_mode: 'cool'})
     end
   end
@@ -323,7 +343,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.label = 'Playroom'
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({label: 'Playroom'})
     end
   end
@@ -365,7 +385,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.target_temperature_high_c = 19.6
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({target_temperature_high_c: 19.5})
     end
   end
@@ -407,7 +427,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.target_temperature_low_c = 19.6
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({target_temperature_low_c: 19.5})
     end
   end
@@ -449,7 +469,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.target_temperature_high_f = 19.6
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({target_temperature_high_f: 20})
     end
   end
@@ -491,7 +511,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.target_temperature_low_f = 19.6
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({target_temperature_low_f: 20})
     end
   end
@@ -533,7 +553,7 @@ RSpec.describe NestConnect::Device::Thermostat do
 
       subject.temperature_scale = 'C'
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(device_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({temperature_scale: 'C'})
     end
   end
