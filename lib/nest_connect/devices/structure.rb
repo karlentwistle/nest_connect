@@ -63,7 +63,7 @@ module NestConnect
       private
 
         def api_runner
-          api_class.new(structure_id, access_token: access_token)
+          api_class.new(resource_id: structure_id, access_token: access_token)
         end
     end
   end

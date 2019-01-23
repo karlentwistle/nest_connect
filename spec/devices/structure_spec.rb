@@ -107,7 +107,7 @@ RSpec.describe NestConnect::Device::Structure do
 
       subject.away = 'away'
 
-      expect(api_class).to have_received(:new).with('structure_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(resource_id: 'structure_id', access_token: nil)
       expect(api_class).to have_received(:put).with({away: 'away'})
     end
   end
@@ -136,7 +136,7 @@ RSpec.describe NestConnect::Device::Structure do
 
       subject.name = 'Home'
 
-      expect(api_class).to have_received(:new).with('structure_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(resource_id: 'structure_id', access_token: nil)
       expect(api_class).to have_received(:put).with({name: 'Home'})
     end
   end

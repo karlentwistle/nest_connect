@@ -94,7 +94,7 @@ RSpec.describe NestConnect::Device::Camera do
 
       subject.is_streaming = true
 
-      expect(api_class).to have_received(:new).with('device_id', access_token: nil)
+      expect(api_class).to have_received(:new).with(resource_id: 'device_id', access_token: nil)
       expect(api_class).to have_received(:put).with({is_streaming: true})
     end
   end
