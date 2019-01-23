@@ -1,43 +1,15 @@
 module NestConnect
   class API
     module Devices
-      class Thermostat < API
-        def initialize(device_id: nil, access_token: nil)
-          @device_id = device_id
-          @access_token = access_token
-        end
-
-        def put(body)
-          connection.put do |request|
-            request.url("devices/thermostats/#{device_id}")
-            request.headers.merge!(headers)
-            request.body = body
-          end
-        end
-
-        def get
-          connection.get do |request|
-            request.url("devices/thermostats/#{device_id}")
-            request.headers.merge!(headers)
-          end
-        end
-
-        def all
-          connection.get do |request|
-            request.url("devices/thermostats")
-            request.headers.merge!(headers)
-          end
-        end
-
+      class Thermostat < BaseDevice
         private
 
-          attr_reader :device_id
+          def resource
+            "devices/thermostats/#{resource_id}"
+          end
 
-          def headers
-            {
-              'Content-Type' => 'application/json',
-              'Authorization' => "Bearer #{access_token}"
-            }
+          def resources
+            "devices/thermostats"
           end
       end
     end

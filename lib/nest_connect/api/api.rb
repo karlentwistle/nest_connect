@@ -32,6 +32,7 @@ end
 
 require_relative 'authorize'
 require_relative 'stream'
+require_relative 'devices/base_device'
 require_relative 'devices/camera'
 require_relative 'devices/protect'
 require_relative 'devices/thermostat'

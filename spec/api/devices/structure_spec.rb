@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 RSpec.describe NestConnect::API::Devices::Structure do
-  subject(:structure) { described_class.new('structure_id') }
+  subject(:structure) { described_class.new(resource_id: 'structure_id') }
 
   describe '#access_token' do
     it 'allows access_token to be overwritten' do
-      subject = described_class.new('structure_id', access_token: '1234')
+      subject = described_class.new(resource_id: 'structure_id', access_token: '1234')
 
       expect(subject.access_token).to eql('1234')
     end

@@ -1,47 +1,15 @@
 module NestConnect
   class API
     module Devices
-      class Structure < API
-        def initialize(structure_id, access_token: nil)
-          @structure_id = structure_id
-          @access_token = access_token
-        end
-
-        def put(body)
-          connection.put do |request|
-            request.url(url)
-            request.headers.merge!(headers)
-            request.body = body
-          end
-        end
-
-        def get
-          connection.get do |request|
-            request.url(url)
-            request.headers.merge!(headers)
-          end
-        end
-
-        def all
-          connection.get do |request|
-            request.url("structures")
-            request.headers.merge!(headers)
-          end
-        end
-
+      class Structure < BaseDevice
         private
 
-          attr_reader :structure_id
-
-          def url
-            "structures/#{structure_id}"
+          def resource
+            "structures/#{resource_id}"
           end
 
-          def headers
-            {
-              'Content-Type' => 'application/json',
-              'Authorization' => "Bearer #{access_token}"
-            }
+          def resources
+            "structures"
           end
       end
     end
